@@ -16,8 +16,52 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String resultado = "0";
+  var resultList = [];
+
   double paddingSize = 20.0;
   double rowSpace = 20.0;
+
+  void updateResult(String texto) {
+    setState(() {
+
+      if (resultado == '0') {
+        resultado = texto;
+        resultList = resultado.split("");
+      } else {
+        resultado += texto;
+        resultList = resultado.split("");
+      }
+
+    });
+  }
+
+  void clearResult() {
+    setState(() {
+      resultado = "0";
+      resultList.clear();
+    });
+  }
+
+  void deleteResult() {
+    setState(() {
+
+      if (resultList.isNotEmpty) {
+        resultList.removeLast();
+        resultado = resultList.join("");
+      }
+
+      if (resultList.isEmpty) {
+        resultado = "0";
+        resultList = resultado.split("");
+      }
+
+    });
+    
+  }
+
+  void calcular() {
+    print("Teste");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,48 +106,48 @@ class _HomeState extends State<Home> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              boxButton("1"),
-                              boxButton("2"),
-                              boxButton("3"),
-                              boxButton("+")
+                              boxButton("1", updateResult),
+                              boxButton("2", updateResult),
+                              boxButton("3", updateResult),
+                              boxButton("+", updateResult)
                             ]
                           ),
                           SizedBox(height: rowSpace),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              boxButton("4"),
-                              boxButton("5"),
-                              boxButton("6"),
-                              boxButton("-")
+                              boxButton("4", updateResult),
+                              boxButton("5", updateResult),
+                              boxButton("6", updateResult),
+                              boxButton("-", updateResult)
                             ]
                           ),
                           SizedBox(height: rowSpace),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              boxButton("7"),
-                              boxButton("8"),
-                              boxButton("9"),
-                              boxButton("/")
+                              boxButton("7", updateResult),
+                              boxButton("8", updateResult),
+                              boxButton("9", updateResult),
+                              boxButton("/", updateResult)
                             ]
                           ),
                           SizedBox(height: rowSpace),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              boxButton(","),
-                              boxButton("0"),
-                              boxButton("="),
-                              boxButton("*")
+                              boxButton(",", updateResult),
+                              boxButton("0", updateResult),
+                              boxButton("=", calcular),
+                              boxButton("*", updateResult)
                             ]
                           ),
                           SizedBox(height: rowSpace),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              bigBoxButton("clear"),
-                              bigBoxButton("delete")
+                              bigBoxButton("clear", clearResult),
+                              bigBoxButton("delete", deleteResult)
                             ]
                           )
                         ]
