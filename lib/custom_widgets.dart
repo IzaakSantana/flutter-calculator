@@ -25,3 +25,14 @@ Widget boxButton(String texto) {
     ),
   );
 }
+
+Widget bigBoxButton(String texto) {
+  return SizedBox(
+    width: 120,
+    height: 50,
+    child: ElevatedButton(
+      child: myText(texto, 20, Colors.white),
+      onPressed: () {}
+    )
+  );
+}

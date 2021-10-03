@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'custom_widgets.dart';
 
 void main() {
   runApp(const Home());
@@ -16,32 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String resultado = "0";
   double paddingSize = 20.0;
-
-  Widget myText(String texto, double tamanho, Color cor) {
-    return RichText(
-      text: TextSpan(
-        text: texto,
-        style: TextStyle(
-          fontSize: tamanho,
-          fontFamily: "ShareTechMono",
-          color: cor      
-        )
-      )
-    );
-  }
-
-  Widget boxButton(String texto) {
-    return SizedBox(
-      width: 50,
-      height: 50,
-      child: ElevatedButton(
-        child: myText(texto, 20.0, Colors.white),
-        onPressed: () {
-          
-        }
-      ),
-    );
-  }
+  double rowSpace = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +36,13 @@ class _HomeState extends State<Home> {
           body: Center(
             child: Padding(
               padding: EdgeInsets.all(paddingSize),
-              child: Container(
+              child: Container( // Container geral
                 color: Colors.deepPurple[100],
                 child: Column(
                   children: [
                     Padding (
                       padding: EdgeInsets.all(paddingSize),
-                      child: Container(
+                      child: Container( // Container do resultado
                         width: 300,
                         height: 50,
                         color: Colors.white,
@@ -88,32 +64,46 @@ class _HomeState extends State<Home> {
                             children: [
                               boxButton("1"),
                               boxButton("2"),
-                              boxButton("3")
+                              boxButton("3"),
+                              boxButton("+")
                             ]
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: rowSpace),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               boxButton("4"),
                               boxButton("5"),
-                              boxButton("6")
+                              boxButton("6"),
+                              boxButton("-")
                             ]
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: rowSpace),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               boxButton("7"),
                               boxButton("8"),
-                              boxButton("9")
+                              boxButton("9"),
+                              boxButton("/")
                             ]
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: rowSpace),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              boxButton(","),
                               boxButton("0"),
+                              boxButton("="),
+                              boxButton("*")
+                            ]
+                          ),
+                          SizedBox(height: rowSpace),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              bigBoxButton("clear"),
+                              bigBoxButton("delete")
                             ]
                           )
                         ]
